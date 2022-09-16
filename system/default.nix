@@ -2,7 +2,7 @@
   imports = [
     ./base.nix
     ./boot.nix
-    ./desktop.nix
+    ./desktop
     ./gpu.nix
     ./i18n.nix
     ./services.nix
