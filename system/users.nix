@@ -8,10 +8,6 @@
       isNormalUser = true;
       description = "Luo";
       extraGroups = [ "networkmanager" "wheel" "docker" ];
-      packages = with pkgs; [
-        firefox
-        tdesktop
-      ];
       useDefaultShell = true;
     };
     defaultUserShell = pkgs.fish;

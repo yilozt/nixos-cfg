@@ -4,7 +4,10 @@
   time.timeZone = "Asia/Shanghai";
 
   # mirror
-  nix.settings.substituters = [ "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store" ];
+  nix.settings.substituters = [
+    "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
+    "https://mirrors.ustc.edu.cn/nix-channels/store"
+  ];
 
   # hostname.
   networking.hostName = "luo";

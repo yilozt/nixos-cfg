@@ -37,5 +37,6 @@
   environment.systemPackages = with pkgs; [
     pantheon.elementary-files
     gnome.gnome-terminal
+    gnome.baobab
   ];
 }
