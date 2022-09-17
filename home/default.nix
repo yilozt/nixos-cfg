@@ -10,11 +10,21 @@
   # Install home-manager package
   programs.home-manager.enable = true;
   home.stateVersion = "22.05";
+  gtk = let extra_cfg = { gtk-application-prefer-dark-theme = 0; }; in
+    {
+      enable = true;
+      theme = {
+        package = pkgs.yi-pkg.colloid-gtk-theme;
+        name = "Colloid-Teal-Dark-Compact-Nord";
+      };
+      gtk3.extraConfig = extra_cfg;
+      gtk4.extraConfig = extra_cfg;
+    };
 
   home.packages = with pkgs; [
     firefox
     tdesktop
-    dfeet     # Debug dbus sessions
+    dfeet # Debug dbus sessions
     nix-index
     nixfmt
     wget

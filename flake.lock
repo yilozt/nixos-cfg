@@ -129,11 +129,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1663296185,
-        "narHash": "sha256-HLQuPTZnoMRMJE/oaaRbXXcOd3XRj4Va6aeiY4tjpE0=",
+        "lastModified": 1663381863,
+        "narHash": "sha256-4HpI751FuYsuA+3l3xv9G+9WnfH+08yVJprYmF5JdMQ=",
         "owner": "nixos-cn",
         "repo": "flakes",
-        "rev": "d8a5f0aaa0dfff8d2c654d9dff01b99606b6a7f1",
+        "rev": "2e44ed04faf4516ff34819e8d268ea3a233b87cd",
         "type": "github"
       },
       "original": {
@@ -160,11 +160,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1663178737,
-        "narHash": "sha256-ayOtdyoNx6BqJtTYVzdQCDz/YWb67TY/CMGacFCgNQo=",
+        "lastModified": 1663268520,
+        "narHash": "sha256-Jf6wkoMOhWUdx9d9UarWHExvOUDzVa98OsPYvbNLVYo=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "1158501e7c7cba26d922723cf9f70099995eb755",
+        "rev": "823e2c9b0a0ec8b61b6583f48338072f137b6889",
         "type": "github"
       },
       "original": {
@@ -189,13 +189,29 @@
         "type": "github"
       }
     },
+    "nixpkgs_4": {
+      "locked": {
+        "lastModified": 1624561540,
+        "narHash": "sha256-izJ2PYZMGMsSkg+e7c9A1x3t/yOLT+qzUM6WQsc2tqo=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "c6a049a3d32293b24c0f894a840872cf67fd7c11",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixpkgs-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nur": {
       "locked": {
-        "lastModified": 1663352768,
-        "narHash": "sha256-7tFpAhEkLmiVHjsBibr9aSifFj2UklnDHWPUNiVGn/k=",
+        "lastModified": 1663404868,
+        "narHash": "sha256-dBUUTbLkRNeW/R1UiBJ+K3hH6zlbXJU3tuf3289mrfE=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "51a77aa9fe390f2068f18a606d25b1e08a1a1d02",
+        "rev": "a4d8468cffa46221c19d2b507f1f117636a58b24",
         "type": "github"
       },
       "original": {
@@ -233,7 +249,8 @@
         "nixos-cn": "nixos-cn",
         "nixpkgs": "nixpkgs_2",
         "nur": "nur",
-        "nur-pkgs": "nur-pkgs"
+        "nur-pkgs": "nur-pkgs",
+        "yi-pkg": "yi-pkg"
       }
     },
     "rust-overlay": {
@@ -285,6 +302,24 @@
         "ref": "master",
         "type": "git",
         "url": "https://gitlab.gnome.org/gnome/vte"
+      }
+    },
+    "yi-pkg": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_4"
+      },
+      "locked": {
+        "lastModified": 1663408393,
+        "narHash": "sha256-JyjclEQ81ZIlA+Pmkw4nnu585NDIRjZZOWdJOFCkUxw=",
+        "owner": "yilozt",
+        "repo": "nurpkg",
+        "rev": "9451a788b0fd11d867678d70182cd8c4dde89c3b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "yilozt",
+        "repo": "nurpkg",
+        "type": "github"
       }
     }
   },

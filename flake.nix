@@ -21,6 +21,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    yi-pkg.url = "github:yilozt/nurpkg";
+
     blackbox.url = "github:mitchmindtree/blackbox.nix";
   };
 
@@ -55,12 +57,10 @@
               # nixos-cn.<pkgname>
               nixos-cn.overlay
 
-              (final: prev: {
-                nur-pkgs = inputs.nur-pkgs.packages."${prev.system}";
-              })
-
-              (final: prev: {
-                blackbox = inputs.blackbox.packages."${prev.system}";
+              (final: prev: with inputs; {
+                nur-pkgs = nur-pkgs.packages."${prev.system}";
+                blackbox = blackbox.packages."${prev.system}";
+                yi-pkg = yi-pkg.packages."${prev.system}";
               })
             ];
 

@@ -11,7 +11,7 @@ let
     gsconnect
     alphabetical-app-grid
     dash-to-dock
-    dynamic-panel-transparency
+    # dynamic-panel-transparency
     just-perfection
     lock-keys
     tray-icons-reloaded
