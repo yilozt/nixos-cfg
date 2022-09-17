@@ -163,7 +163,7 @@ in
       use-higher-precision = false;
     };
 
-    "org/gnome/shell/extensions/vitals" = {
+    "org/gnome/shell/extensions/x11gestures" = {
       swipe-fingers = 3;
     };
   };
