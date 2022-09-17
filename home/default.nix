@@ -4,6 +4,7 @@
   imports = [
     ./shell.nix
     ./gnome.nix
+    ./git.nix
   ];
 
   # Install home-manager package

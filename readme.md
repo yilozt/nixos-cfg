@@ -1,4 +1,6 @@
-Personal NixOS configuration, manager by flake.
+__Personal NixOS configuration__
+
+manager by flake & home-manager.
 
 ```
 nixos-rebuild switch --flake '.#'
