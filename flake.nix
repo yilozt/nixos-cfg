@@ -20,6 +20,8 @@
       url = github:ocfox/nur-pkgs;
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    blackbox.url = "github:mitchmindtree/blackbox.nix";
   };
 
   outputs = inputs @ { self, nixpkgs, home-manager, nur, nixos-cn, ... }: {
@@ -55,6 +57,10 @@
 
               (final: prev: {
                 nur-pkgs = inputs.nur-pkgs.packages."${prev.system}";
+              })
+
+              (final: prev: {
+                blackbox = inputs.blackbox.packages."${prev.system}";
               })
             ];
 

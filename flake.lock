@@ -1,5 +1,43 @@
 {
   "nodes": {
+    "blackbox": {
+      "inputs": {
+        "blackbox-src": "blackbox-src",
+        "marble-src": "marble-src",
+        "nixpkgs": "nixpkgs",
+        "vte-src": "vte-src"
+      },
+      "locked": {
+        "lastModified": 1662449930,
+        "narHash": "sha256-eWdjJXRHzBJLmp8tjE0zLeGKdsM9GkBw/QqounybpGM=",
+        "owner": "mitchmindtree",
+        "repo": "blackbox.nix",
+        "rev": "01d2ac7f73597060c1cbdb3af22482d292b65357",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mitchmindtree",
+        "repo": "blackbox.nix",
+        "type": "github"
+      }
+    },
+    "blackbox-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1660669382,
+        "narHash": "sha256-8u4qHC8+3rKDFNdg5kI48dBgAm3d6ESXN5H9aT/nIBY=",
+        "ref": "main",
+        "rev": "c9ed9fd1e50b5be15ed0529e3536c63aa4b23553",
+        "revCount": 247,
+        "type": "git",
+        "url": "https://gitlab.gnome.org/raggesilver/blackbox"
+      },
+      "original": {
+        "ref": "main",
+        "type": "git",
+        "url": "https://gitlab.gnome.org/raggesilver/blackbox"
+      }
+    },
     "flake-utils": {
       "locked": {
         "lastModified": 1638122382,
@@ -66,6 +104,23 @@
         "type": "github"
       }
     },
+    "marble-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1650416394,
+        "narHash": "sha256-0VJ9nyjWOOdLBm3ufleS/xcAS5YsSedJ2NtBjyM3uaY=",
+        "ref": "wip/gtk4",
+        "rev": "6dcc6fefa35f0151b0549c01bd774750fe6bdef8",
+        "revCount": 31,
+        "type": "git",
+        "url": "https://gitlab.gnome.org/raggesilver/marble"
+      },
+      "original": {
+        "ref": "wip/gtk4",
+        "type": "git",
+        "url": "https://gitlab.gnome.org/raggesilver/marble"
+      }
+    },
     "nixos-cn": {
       "inputs": {
         "flake-utils": "flake-utils",
@@ -89,6 +144,22 @@
     },
     "nixpkgs": {
       "locked": {
+        "lastModified": 1660819943,
+        "narHash": "sha256-TRZV/mlW1eYuojqDC3ueYWj7jsTKXJCtyMLNYX/Ybtw=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "8ea014acc33da95ea56c902229957d8225005163",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_2": {
+      "locked": {
         "lastModified": 1663178737,
         "narHash": "sha256-ayOtdyoNx6BqJtTYVzdQCDz/YWb67TY/CMGacFCgNQo=",
         "owner": "NixOS",
@@ -102,7 +173,7 @@
         "type": "indirect"
       }
     },
-    "nixpkgs_2": {
+    "nixpkgs_3": {
       "locked": {
         "lastModified": 1659102345,
         "narHash": "sha256-Vbzlz254EMZvn28BhpN8JOi5EuKqnHZ3ujFYgFcSGvk=",
@@ -157,9 +228,10 @@
     },
     "root": {
       "inputs": {
+        "blackbox": "blackbox",
         "home-manager": "home-manager",
         "nixos-cn": "nixos-cn",
-        "nixpkgs": "nixpkgs",
+        "nixpkgs": "nixpkgs_2",
         "nur": "nur",
         "nur-pkgs": "nur-pkgs"
       }
@@ -167,7 +239,7 @@
     "rust-overlay": {
       "inputs": {
         "flake-utils": "flake-utils_3",
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": "nixpkgs_3"
       },
       "locked": {
         "lastModified": 1661223502,
@@ -196,6 +268,23 @@
         "owner": "numtide",
         "repo": "flake-utils",
         "type": "github"
+      }
+    },
+    "vte-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1660860193,
+        "narHash": "sha256-Th7Jlll9DIGuB4dySAfTGI6TXyTl0AfRE0EgT0exrJs=",
+        "ref": "master",
+        "rev": "b4abc09b0950e2b1593782116b7fa9fc2e7ffba1",
+        "revCount": 5209,
+        "type": "git",
+        "url": "https://gitlab.gnome.org/gnome/vte"
+      },
+      "original": {
+        "ref": "master",
+        "type": "git",
+        "url": "https://gitlab.gnome.org/gnome/vte"
       }
     }
   },

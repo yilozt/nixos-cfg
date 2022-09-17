@@ -27,5 +27,8 @@
     #   # info：update sha256 if got error
     #   sha256 = "sha256-E0ZGFVp9h42G3iMzJ26P7WiASSgRdgnTHUTSRouFQYw=";
     # })
+
+    # A beautiful GTK4 terminal
+    blackbox.blackbox
   ];
 }
