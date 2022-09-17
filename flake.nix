@@ -31,48 +31,53 @@
     # Used with `nixos-rebuild --flake .#<hostname>`
     # nixosConfigurations."<hostname>".config.system.build.toplevel must be a derivation
     nixosConfigurations.luo = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      specialArgs = { inherit inputs; };
-      modules =
-        [
-          # System wide configuration
-          ./configuration.nix
+        system = "x86_64-linux";
+        specialArgs = { inherit inputs; };
+        modules =
+          [
+            # System wide configuration
+            ./configuration.nix
 
-          # User configuration
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.luo = nixpkgs.lib.mkMerge [
-              ./home
-            ];
-          }
+            # User configuration
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.luo = nixpkgs.lib.mkMerge [
+                ./home
+              ];
+            }
 
-          {
-            nixpkgs.overlays = [
-              # Install packages from nur:
-              # add nur.repo.<username>.<packagename> to packages list 
-              nur.overlay
+            {
+              imports = [
+                # Services for v2raya
+                inputs.yi-pkg.nixosModules.v2raya
+              ];
 
-              # nixos-cn.<pkgname>
-              nixos-cn.overlay
+              nixpkgs.overlays = [
+                # Install packages from nur:
+                # add nur.repo.<username>.<packagename> to packages list 
+                nur.overlay
 
-              (final: prev: with inputs; {
-                nur-pkgs = nur-pkgs.packages."${prev.system}";
-                blackbox = blackbox.packages."${prev.system}";
-                yi-pkg = yi-pkg.packages."${prev.system}";
-              })
-            ];
+                # nixos-cn.<pkgname>
+                nixos-cn.overlay
 
-            # 使用 nixos-cn 的 binary cache
-            nix.settings.substituters = [
-              "https://nixos-cn.cachix.org"
-            ];
-            nix.settings.trusted-public-keys = [
-              "nixos-cn.cachix.org-1:L0jEaL6w7kwQOPlLoCR3ADx+E3Q8SEFEcB9Jaibl0Xg="
-            ];
-          }
-        ];
-    };
+                (final: prev: with inputs; {
+                  nur-pkgs = nur-pkgs.packages."${prev.system}";
+                  blackbox = blackbox.packages."${prev.system}";
+                  yi-pkg = yi-pkg.packages."${prev.system}";
+                })
+              ];
+
+              # 使用 nixos-cn 的 binary cache
+              nix.settings.substituters = [
+                "https://nixos-cn.cachix.org"
+              ];
+              nix.settings.trusted-public-keys = [
+                "nixos-cn.cachix.org-1:L0jEaL6w7kwQOPlLoCR3ADx+E3Q8SEFEcB9Jaibl0Xg="
+              ];
+            }
+          ];
+      };
   };
 }
