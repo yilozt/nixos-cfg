@@ -10,7 +10,7 @@
   # Install home-manager package
   programs.home-manager.enable = true;
   home.stateVersion = "22.05";
-  gtk = let extra_cfg = { gtk-application-prefer-dark-theme = 0; }; in
+  gtk = let extra_cfg = { gtk-application-prefer-dark-theme = 1; }; in
     {
       enable = true;
       theme = {
@@ -29,6 +29,8 @@
     nixfmt
     wget
     peek
+    rustup
+    gcc
 
     nixos-cn.wechat-uos
     nur.repos.linyinfeng.wemeet
@@ -40,5 +42,7 @@
 
     # A beautiful GTK4 terminal
     blackbox.blackbox
+
+    (wpsoffice.override { useChineseVersion = true; })
   ];
 }

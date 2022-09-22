@@ -28,14 +28,15 @@
     gnome.gnome-music
     gnome.gnome-contacts
     gnome.gnome-clocks
+    gnome-tour
     gnome-console
     gnome-text-editor
     epiphany
     gnome.cheese
-    gnome.nautilus # use elementary-files instead
+    gnome.nautilus # use nemo instead
   ];
   environment.systemPackages = with pkgs; [
-    pantheon.elementary-files
+    cinnamon.nemo
     gnome.gnome-terminal
     gnome.baobab
   ];
