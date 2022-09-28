@@ -31,6 +31,7 @@
     peek
     rustup
     gcc
+    goldendict
 
     nixos-cn.wechat-uos
     nur.repos.linyinfeng.wemeet

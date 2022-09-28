@@ -58,7 +58,6 @@
     gnome.gnome-tweaks
     git
     exa
-    distrobox
   ];
 
   # Enable nix command

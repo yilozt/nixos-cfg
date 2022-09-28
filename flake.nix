@@ -2,7 +2,7 @@
   description = "NixOS configurations, power by flakes & home-manager";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-unstable";
+    nixpkgs.url = "nixpkgs/gnome";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -26,12 +26,34 @@
     blackbox.url = "github:mitchmindtree/blackbox.nix";
   };
 
-  outputs = inputs @ { self, nixpkgs, home-manager, nur, nixos-cn, ... }: {
+  outputs = inputs @ { self, home-manager, nur, nixos-cn, ... }:
+    let
+      # Apply remote patches to nixpkgs
+      # ref; https://github.com/NixOS/nixpkgs/pull/142273#issuecomment-948225922
+      remoteNixpkgsPatches = [
+        {
+          meta.description = "[test] GNOME 42 → 43";
+          url = "https://github.com/NixOS/nixpkgs/pull/182618.diff";
+          sha256 = "sha256-2QB5q68GPs1IXADMAOH7Cm8u2IYM+IeSm2dHATSdXeY=";
+        }
+      ];
+      system = "x86_64-linux";
+      originPkgs = inputs.nixpkgs.legacyPackages."x86_64-linux";
+      nixpkgs = originPkgs.applyPatches {
+        name = "nixpkgs-patched";
+        src = inputs.nixpkgs;
+        patches = map originPkgs.fetchpatch remoteNixpkgsPatches;
+      };
+      # nixosSystem = import (nixpkgs + "/nixos/lib/eval-config.nix");
+      # Uncomment to use a Nixpkgs without remoteNixpkgsPatches
+      nixosSystem = inputs.nixpkgs.lib.nixosSystem;
+    in
+    {
 
-    # Used with `nixos-rebuild --flake .#<hostname>`
-    # nixosConfigurations."<hostname>".config.system.build.toplevel must be a derivation
-    nixosConfigurations.luo = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
+      # Used with `nixos-rebuild --flake .#<hostname>`
+      # nixosConfigurations."<hostname>".config.system.build.toplevel must be a derivation
+      nixosConfigurations.luo = nixosSystem {
+        inherit system;
         specialArgs = { inherit inputs; };
         modules =
           [
@@ -43,7 +65,7 @@
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.users.luo = nixpkgs.lib.mkMerge [
+              home-manager.users.luo = originPkgs.lib.mkMerge [
                 ./home
               ];
             }
@@ -79,5 +101,5 @@
             }
           ];
       };
-  };
+    };
 }
