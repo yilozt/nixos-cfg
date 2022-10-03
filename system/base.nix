@@ -28,16 +28,12 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
-  # Enable sound with pipewire.
+  # Enable sound
   sound.enable = true;
-  hardware.pulseaudio.enable = false;
+  hardware.pulseaudio.enable = true;
+  services.jack.alsa.enable = true;
+  services.jack.alsa.support32Bit = true;
   security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-  };
 
   # Steam
   programs.steam.enable = true;
@@ -58,6 +54,9 @@
     gnome.gnome-tweaks
     git
     exa
+    xorg.xhost
+
+    steamPackages.steam-runtime
   ];
 
   # Enable nix command

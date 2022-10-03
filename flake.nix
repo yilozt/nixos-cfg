@@ -2,24 +2,15 @@
   description = "NixOS configurations, power by flakes & home-manager";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/gnome";
+    nixpkgs.url = "nixpkgs/nixos-unstable";
 
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    home-manager.url = "github:nix-community/home-manager";
 
     nur.url = "github:nix-community/NUR";
 
-    nixos-cn = {
-      url = "github:nixos-cn/flakes";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    nixos-cn.url = "github:nixos-cn/flakes";
 
-    nur-pkgs = {
-      url = github:ocfox/nur-pkgs;
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    nur-pkgs.url = github:ocfox/nur-pkgs;
 
     yi-pkg.url = "github:yilozt/nurpkg";
 
@@ -85,7 +76,6 @@
                 nixos-cn.overlay
 
                 (final: prev: with inputs; {
-                  nur-pkgs = nur-pkgs.packages."${prev.system}";
                   blackbox = blackbox.packages."${prev.system}";
                   yi-pkg = yi-pkg.packages."${prev.system}";
                 })

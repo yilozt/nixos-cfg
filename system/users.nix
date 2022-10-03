@@ -7,7 +7,7 @@
     users.luo = {
       isNormalUser = true;
       description = "Luo";
-      extraGroups = [ "networkmanager" "wheel" "docker" ];
+      extraGroups = [ "networkmanager" "wheel" "video" ];
       useDefaultShell = true;
     };
     defaultUserShell = pkgs.fish;

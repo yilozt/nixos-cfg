@@ -32,18 +32,20 @@
     rustup
     gcc
     goldendict
-
-    nixos-cn.wechat-uos
-    nur.repos.linyinfeng.wemeet
-    # nur-pkgs.gtk-qq
-    # (nur.repos.xddxdd.wine-wechat.override {
-    #   # info：update sha256 if got error
-    #   sha256 = "sha256-E0ZGFVp9h42G3iMzJ26P7WiASSgRdgnTHUTSRouFQYw=";
-    # })
+    qbittorrent
 
     # A beautiful GTK4 terminal
     blackbox.blackbox
 
     (wpsoffice.override { useChineseVersion = true; })
+
+    libstrangle
+    (lutris.override {
+      lutris-unwrapped = lutris-unwrapped.override {
+        wine = wineWowPackages.staging;
+      };
+    })
+    mangohud
+    xorg.libXcursor
   ];
 }

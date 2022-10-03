@@ -62,7 +62,7 @@ in
       runner-menu-hotkey = "Custom";
       show-activities-button = false;
       toggle-runner-menu = [ "<Super>x" ];
-      menu-layout = "Elementary";
+      menu-layout = "GnomeOverview";
       menu-hotkey = "Super_L";
       menu-button-icon = "Arc_Menu_Icon";
       multi-monitor = true;
