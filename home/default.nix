@@ -15,14 +15,18 @@
       enable = true;
       theme = {
         package = pkgs.yi-pkg.colloid-gtk-theme;
-        name = "Colloid-Teal-Dark-Compact-Nord";
+        name = "Colloid-Dark-Compact-Nord";
       };
       gtk3.extraConfig = extra_cfg;
       gtk4.extraConfig = extra_cfg;
+      iconTheme = {
+        name = "Tela-circle";
+        package = pkgs.tela-circle-icon-theme;
+      };
     };
 
   home.packages = with pkgs; [
-    firefox
+    firefox-bin
     tdesktop
     dfeet # Debug dbus sessions
     nix-index
@@ -37,9 +41,8 @@
     # A beautiful GTK4 terminal
     blackbox.blackbox
 
-    (wpsoffice.override { useChineseVersion = true; })
-
-    libstrangle
+    # (wpsoffice.override { useChineseVersion = true; })
+    wpsoffice-cn
     (lutris.override {
       lutris-unwrapped = lutris-unwrapped.override {
         wine = wineWowPackages.staging;

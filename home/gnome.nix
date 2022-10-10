@@ -122,7 +122,7 @@ in
       accessibility-menu = false;
       activities-button = false;
       app-menu = false;
-      clock-menu-position = 1;
+      clock-menu-position = 0;
       clock-menu-position-offset = 0;
       dash-separator = false;
       keyboard-layout = false;

@@ -9,7 +9,7 @@
     };
 
     # Linux kernel
-    kernelPackages = pkgs.linuxPackages_xanmod;
+    kernelPackages = pkgs.linuxPackages_xanmod_latest;
 
     # Setup keyfile
     initrd.secrets = {

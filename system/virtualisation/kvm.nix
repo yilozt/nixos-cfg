@@ -38,35 +38,6 @@ in
     };
   };
 
-  # Setup qemu hooks
-  systemd.services.libvirtd.preStart =
-    let
-      qemu-hook = pkgs.writeShellScriptBin "qemu-hook" ''
-        xhost=${pkgs.xorg.xhost}/bin/xhost
-        export DISPLAY=:0
-        if [ $# -ge 3 ]; then
-          if [ "$2" = "prepare" ] && [ "$3" = "begin" ]; then
-            $xhost +
-          elif [ "$2" = "release" ] && [ "$3" = "end" ]; then
-            $xhost -
-          fi
-        fi
-      '';
-    in
-    ''
-      mkdir -p /var/lib/libvirt/hooks
-      chmod 755 /var/lib/libvirt/hooks
-
-      # Copy hook files
-      cp -f ${qemu-hook}/bin/qemu-hook /var/lib/libvirt/hooks/qemu
-
-      # Make them executable
-      chmod +x /var/lib/libvirt/hooks/qemu
-
-      # Copy Resource
-      [[ -d /vm-resources ]] || cp -rf ${resources} /vm-resources
-      chmod -R 755 /vm-resources
-    '';
   # Create devices used by vm
   systemd.services.vm-disks-loop-devices =
     let
@@ -344,12 +315,18 @@ in
       '';
       create-vm = pkgs.writeShellScriptBin "create-vm" ''
         xhost +
-        virsh -c qemu:///system create ${win11-xml}
+        virsh -c qemu:///system define ${win11-xml}
+        xhost -
+      '';
+      start-vm = pkgs.writeShellScriptBin "start-vm" ''
+        xhost +
+        virsh -c qemu:///system start Windows_on_Nix
         xhost -
       '';
     in
     [
       create-vm
+      start-vm
       pkgs.virt-manager
       pkgs.dnsmasq
       pkgs.iptables

@@ -1,14 +1,12 @@
 { config, lib, pkgs, ... }:
 
 {
-  time.timeZone = "Asia/Shanghai";
+  nix.readOnlyStore = false;
+  fileSystems = {
+    "/".options = [ "compress=zstd" ];
+  };
 
-  # mirror
-  nix.settings.substituters = [
-    "https://mirror.sjtu.edu.cn/nix-channels/store"
-    # "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
-    # "https://mirrors.ustc.edu.cn/nix-channels/store"
-  ];
+  time.timeZone = "Asia/Shanghai";
 
   # hostname.
   networking.hostName = "luo";
@@ -46,8 +44,8 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    #  wget
+    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    wget
     rnix-lsp
     vscodium
     gnome.dconf-editor
@@ -55,8 +53,7 @@
     git
     exa
     xorg.xhost
-
-    steamPackages.steam-runtime
+    compsize
   ];
 
   # Enable nix command

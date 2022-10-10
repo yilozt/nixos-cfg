@@ -10,10 +10,17 @@ let prime-run = pkgs.writeShellScriptBin "prime-run" ''
 in
 {
   services.xserver.videoDrivers = [ "nvidia" ];
+  nixpkgs.config.packageOverrides = pkgs: {
+    vaapiIntel = pkgs.vaapiIntel.override { enableHybridCodec = true; };
+  };
   hardware.opengl = {
     enable = true;
-    extraPackages = with pkgs; [ nvidia-vaapi-driver vaapiIntel libvdpau-va-gl vaapiVdpau intel-ocl ];
-    extraPackages32 = with pkgs.pkgsi686Linux; [ nvidia-vaapi-driver vaapiIntel libvdpau-va-gl vaapiVdpau ];
+    extraPackages = with pkgs; [
+      vaapiVdpau
+      libvdpau-va-gl
+      intel-media-driver # LIBVA_DRIVER_NAME=iHD
+      vaapiIntel
+    ];
   };
   hardware.nvidia = {
     prime = {

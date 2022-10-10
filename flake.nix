@@ -6,18 +6,18 @@
 
     home-manager.url = "github:nix-community/home-manager";
 
-    nur.url = "github:nix-community/NUR";
+    #nur.url = "github:nix-community/NUR";
 
-    nixos-cn.url = "github:nixos-cn/flakes";
+    #.url = "github:nixos-cn/flakes";
 
-    nur-pkgs.url = github:ocfox/nur-pkgs;
+    #nur-pkgs.url = github:ocfox/nur-pkgs;
 
     yi-pkg.url = "github:yilozt/nurpkg";
 
     blackbox.url = "github:mitchmindtree/blackbox.nix";
   };
 
-  outputs = inputs @ { self, home-manager, nur, nixos-cn, ... }:
+  outputs = inputs @ { self, home-manager, ... }:
     let
       # Apply remote patches to nixpkgs
       # ref; https://github.com/NixOS/nixpkgs/pull/142273#issuecomment-948225922
@@ -25,7 +25,7 @@
         {
           meta.description = "[test] GNOME 42 → 43";
           url = "https://github.com/NixOS/nixpkgs/pull/182618.diff";
-          sha256 = "sha256-2QB5q68GPs1IXADMAOH7Cm8u2IYM+IeSm2dHATSdXeY=";
+          sha256 = "sha256-zckc5FKBxnGxAGveAOsM12si8FRBqq9BUAPXAdqEEs4=";
         }
       ];
       system = "x86_64-linux";
@@ -35,9 +35,9 @@
         src = inputs.nixpkgs;
         patches = map originPkgs.fetchpatch remoteNixpkgsPatches;
       };
-      # nixosSystem = import (nixpkgs + "/nixos/lib/eval-config.nix");
+      nixosSystem = import (nixpkgs + "/nixos/lib/eval-config.nix");
       # Uncomment to use a Nixpkgs without remoteNixpkgsPatches
-      nixosSystem = inputs.nixpkgs.lib.nixosSystem;
+      # nixosSystem = inputs.nixpkgs.lib.nixosSystem;
     in
     {
 
@@ -70,10 +70,10 @@
               nixpkgs.overlays = [
                 # Install packages from nur:
                 # add nur.repo.<username>.<packagename> to packages list 
-                nur.overlay
+                # nur.overlay
 
                 # nixos-cn.<pkgname>
-                nixos-cn.overlay
+                # nixos-cn.overlay
 
                 (final: prev: with inputs; {
                   blackbox = blackbox.packages."${prev.system}";
@@ -83,7 +83,11 @@
 
               # 使用 nixos-cn 的 binary cache
               nix.settings.substituters = [
+                "https://hydra.nixos.org"
                 "https://nixos-cn.cachix.org"
+                # "https://mirror.sjtu.edu.cn/nix-channels/store"
+                # "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
+                "https://mirrors.ustc.edu.cn/nix-channels/store"
               ];
               nix.settings.trusted-public-keys = [
                 "nixos-cn.cachix.org-1:L0jEaL6w7kwQOPlLoCR3ADx+E3Q8SEFEcB9Jaibl0Xg="
