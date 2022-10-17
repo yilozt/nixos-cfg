@@ -2,8 +2,8 @@
   description = "NixOS configurations, power by flakes & home-manager";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-unstable";
-
+    # lock commit hash to nixos-unstable
+    nixpkgs.url = "nixpkgs/2e193264db568a42b342e4b914dc314383a6194c";
     home-manager.url = "github:nix-community/home-manager";
 
     #nur.url = "github:nix-community/NUR";
@@ -21,13 +21,7 @@
     let
       # Apply remote patches to nixpkgs
       # ref; https://github.com/NixOS/nixpkgs/pull/142273#issuecomment-948225922
-      remoteNixpkgsPatches = [
-        {
-          meta.description = "[test] GNOME 42 → 43";
-          url = "https://github.com/NixOS/nixpkgs/pull/182618.diff";
-          sha256 = "sha256-zckc5FKBxnGxAGveAOsM12si8FRBqq9BUAPXAdqEEs4=";
-        }
-      ];
+      remoteNixpkgsPatches = [];
       system = "x86_64-linux";
       originPkgs = inputs.nixpkgs.legacyPackages."x86_64-linux";
       nixpkgs = originPkgs.applyPatches {
@@ -35,9 +29,9 @@
         src = inputs.nixpkgs;
         patches = map originPkgs.fetchpatch remoteNixpkgsPatches;
       };
-      nixosSystem = import (nixpkgs + "/nixos/lib/eval-config.nix");
+      # nixosSystem = import (nixpkgs + "/nixos/lib/eval-config.nix");
       # Uncomment to use a Nixpkgs without remoteNixpkgsPatches
-      # nixosSystem = inputs.nixpkgs.lib.nixosSystem;
+      nixosSystem = inputs.nixpkgs.lib.nixosSystem;
     in
     {
 
@@ -83,14 +77,13 @@
 
               # 使用 nixos-cn 的 binary cache
               nix.settings.substituters = [
-                "https://hydra.nixos.org"
-                "https://nixos-cn.cachix.org"
+                # "https://nixos-cn.cachix.org"
                 # "https://mirror.sjtu.edu.cn/nix-channels/store"
                 # "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
                 "https://mirrors.ustc.edu.cn/nix-channels/store"
               ];
               nix.settings.trusted-public-keys = [
-                "nixos-cn.cachix.org-1:L0jEaL6w7kwQOPlLoCR3ADx+E3Q8SEFEcB9Jaibl0Xg="
+                # "nixos-cn.cachix.org-1:L0jEaL6w7kwQOPlLoCR3ADx+E3Q8SEFEcB9Jaibl0Xg="
               ];
             }
           ];

@@ -26,29 +26,28 @@
     };
 
   home.packages = with pkgs; [
-    firefox-bin
-    tdesktop
+    blackbox.blackbox # A beautiful GTK4 terminal
     dfeet # Debug dbus sessions
-    nix-index
-    nixfmt
-    wget
-    peek
-    rustup
+    firefox-bin
     gcc
     goldendict
-    qbittorrent
-
-    # A beautiful GTK4 terminal
-    blackbox.blackbox
-
-    # (wpsoffice.override { useChineseVersion = true; })
-    wpsoffice-cn
+    gnome.gnome-boxes
+    keepassxc
     (lutris.override {
       lutris-unwrapped = lutris-unwrapped.override {
         wine = wineWowPackages.staging;
       };
     })
     mangohud
+    newsflash
+    nix-index
+    nixfmt
+    peek
+    qbittorrent
+    rustup
+    tdesktop
+    wget
+    wpsoffice-cn
     xorg.libXcursor
   ];
 }

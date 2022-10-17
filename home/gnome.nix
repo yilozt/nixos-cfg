@@ -12,7 +12,7 @@ let
     alphabetical-app-grid
     dash-to-dock
     # dynamic-panel-transparency
-    just-perfection
+    # just-perfection
     lock-keys
     tray-icons-reloaded
     gtk-title-bar

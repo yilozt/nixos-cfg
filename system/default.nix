@@ -8,5 +8,6 @@
     ./services.nix
     ./users.nix
     ./virtualisation
+    ./vscodium.nix
   ];
 }
