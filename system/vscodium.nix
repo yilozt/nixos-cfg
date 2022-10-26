@@ -15,6 +15,8 @@
         eamodio.gitlens
         mhutchie.git-graph
         streetsidesoftware.code-spell-checker
+        usernamehw.errorlens
+        WakaTime.vscode-wakatime
       ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
       {
         name = "shader";

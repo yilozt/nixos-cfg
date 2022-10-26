@@ -7,14 +7,10 @@
     home-manager.url = "github:nix-community/home-manager";
 
     #nur.url = "github:nix-community/NUR";
-
     #.url = "github:nixos-cn/flakes";
-
     #nur-pkgs.url = github:ocfox/nur-pkgs;
 
     yi-pkg.url = "github:yilozt/nurpkg";
-
-    blackbox.url = "github:mitchmindtree/blackbox.nix";
   };
 
   outputs = inputs @ { self, home-manager, ... }:
@@ -70,7 +66,6 @@
                 # nixos-cn.overlay
 
                 (final: prev: with inputs; {
-                  blackbox = blackbox.packages."${prev.system}";
                   yi-pkg = yi-pkg.packages."${prev.system}";
                 })
               ];

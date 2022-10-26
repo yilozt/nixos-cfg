@@ -1,96 +1,25 @@
 {
   "nodes": {
-    "blackbox": {
-      "inputs": {
-        "blackbox-src": "blackbox-src",
-        "marble-src": "marble-src",
-        "nixpkgs": "nixpkgs",
-        "vte-src": "vte-src"
-      },
-      "locked": {
-        "lastModified": 1662449930,
-        "narHash": "sha256-eWdjJXRHzBJLmp8tjE0zLeGKdsM9GkBw/QqounybpGM=",
-        "owner": "mitchmindtree",
-        "repo": "blackbox.nix",
-        "rev": "01d2ac7f73597060c1cbdb3af22482d292b65357",
-        "type": "github"
-      },
-      "original": {
-        "owner": "mitchmindtree",
-        "repo": "blackbox.nix",
-        "type": "github"
-      }
-    },
-    "blackbox-src": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1660669382,
-        "narHash": "sha256-8u4qHC8+3rKDFNdg5kI48dBgAm3d6ESXN5H9aT/nIBY=",
-        "ref": "main",
-        "rev": "c9ed9fd1e50b5be15ed0529e3536c63aa4b23553",
-        "revCount": 247,
-        "type": "git",
-        "url": "https://gitlab.gnome.org/raggesilver/blackbox"
-      },
-      "original": {
-        "ref": "main",
-        "type": "git",
-        "url": "https://gitlab.gnome.org/raggesilver/blackbox"
-      }
-    },
     "home-manager": {
       "inputs": {
-        "nixpkgs": "nixpkgs_2",
+        "nixpkgs": "nixpkgs",
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1665271265,
-        "narHash": "sha256-4Nn0T5YoR3bBLFnPy6Tkc8zzmzMTBjSGZq05c5hKhEI=",
+        "lastModified": 1665949912,
+        "narHash": "sha256-NAp+YHTxgnpEaIJanOmtUx9XAnhKTCzG8LlFyZIAz7M=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "e1f1160284198a68ea8c7fffbbb1436f99e46ef9",
+        "rev": "04f53999788cd47c6ce932d6cbd7cbfd3998712f",
         "type": "github"
       },
       "original": {
         "owner": "nix-community",
         "repo": "home-manager",
         "type": "github"
-      }
-    },
-    "marble-src": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1650416394,
-        "narHash": "sha256-0VJ9nyjWOOdLBm3ufleS/xcAS5YsSedJ2NtBjyM3uaY=",
-        "ref": "wip/gtk4",
-        "rev": "6dcc6fefa35f0151b0549c01bd774750fe6bdef8",
-        "revCount": 31,
-        "type": "git",
-        "url": "https://gitlab.gnome.org/raggesilver/marble"
-      },
-      "original": {
-        "ref": "wip/gtk4",
-        "type": "git",
-        "url": "https://gitlab.gnome.org/raggesilver/marble"
       }
     },
     "nixpkgs": {
-      "locked": {
-        "lastModified": 1660819943,
-        "narHash": "sha256-TRZV/mlW1eYuojqDC3ueYWj7jsTKXJCtyMLNYX/Ybtw=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "8ea014acc33da95ea56c902229957d8225005163",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_2": {
       "locked": {
         "lastModified": 1662996720,
         "narHash": "sha256-XvLQ3SuXnDMJMpM1sv1ifPjBuRytiDYhB12H/BNTjgY=",
@@ -106,7 +35,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_3": {
+    "nixpkgs_2": {
       "locked": {
         "lastModified": 1665907538,
         "narHash": "sha256-mDpTY5Xd3JTMa/6p7UjJjOChpmYGgkhBodmxzN9NuJ0=",
@@ -121,13 +50,13 @@
         "type": "indirect"
       }
     },
-    "nixpkgs_4": {
+    "nixpkgs_3": {
       "locked": {
-        "lastModified": 1624561540,
-        "narHash": "sha256-izJ2PYZMGMsSkg+e7c9A1x3t/yOLT+qzUM6WQsc2tqo=",
+        "lastModified": 1665975177,
+        "narHash": "sha256-PypbdMOB9l5Uks1phl2reKY+klMabz8fepj7bWrupZE=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "c6a049a3d32293b24c0f894a840872cf67fd7c11",
+        "rev": "ab6176ac5b0ee4f18e9cb380a41a6e1816c7bc89",
         "type": "github"
       },
       "original": {
@@ -139,9 +68,8 @@
     },
     "root": {
       "inputs": {
-        "blackbox": "blackbox",
         "home-manager": "home-manager",
-        "nixpkgs": "nixpkgs_3",
+        "nixpkgs": "nixpkgs_2",
         "yi-pkg": "yi-pkg"
       }
     },
@@ -160,33 +88,16 @@
         "type": "github"
       }
     },
-    "vte-src": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1660860193,
-        "narHash": "sha256-Th7Jlll9DIGuB4dySAfTGI6TXyTl0AfRE0EgT0exrJs=",
-        "ref": "master",
-        "rev": "b4abc09b0950e2b1593782116b7fa9fc2e7ffba1",
-        "revCount": 5209,
-        "type": "git",
-        "url": "https://gitlab.gnome.org/gnome/vte"
-      },
-      "original": {
-        "ref": "master",
-        "type": "git",
-        "url": "https://gitlab.gnome.org/gnome/vte"
-      }
-    },
     "yi-pkg": {
       "inputs": {
-        "nixpkgs": "nixpkgs_4"
+        "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1665384177,
-        "narHash": "sha256-MTQbR8LNapofhg9mwdPFzkxX+X9hH1/b9AO8hDKv2iw=",
+        "lastModified": 1665990241,
+        "narHash": "sha256-koRgT8umRnNRQU3QikCFd4kEfiaoXot328aEaHMH8ic=",
         "owner": "yilozt",
         "repo": "nurpkg",
-        "rev": "4cb1a93cc74e58e7903dd8b30fa0a0c52296c7d2",
+        "rev": "82fb3c11c28f1155525c620be7b6f525cee50dd0",
         "type": "github"
       },
       "original": {

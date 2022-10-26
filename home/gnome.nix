@@ -8,7 +8,6 @@ let
   # use `passthru.extensionUuid` to get uuid of extensions
   extensions = with pkgs.gnomeExtensions; [
     arcmenu
-    gsconnect
     alphabetical-app-grid
     dash-to-dock
     # dynamic-panel-transparency

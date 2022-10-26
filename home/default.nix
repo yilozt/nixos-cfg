@@ -26,10 +26,9 @@
     };
 
   home.packages = with pkgs; [
-    blackbox.blackbox # A beautiful GTK4 terminal
+    blackbox-terminal # A beautiful GTK4 terminal
     dfeet # Debug dbus sessions
     firefox-bin
-    gcc
     goldendict
     gnome.gnome-boxes
     keepassxc
@@ -42,12 +41,14 @@
     newsflash
     nix-index
     nixfmt
+    okular
     peek
     qbittorrent
-    rustup
+    scrcpy
     tdesktop
     wget
     wpsoffice-cn
     xorg.libXcursor
+    yi-pkg.system-monitoring-center
   ];
 }
