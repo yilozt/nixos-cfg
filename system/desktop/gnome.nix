@@ -56,6 +56,7 @@
     epiphany
     gnome.cheese
     gnome.nautilus # use nemo instead
+    gnome.geary    # use thunderbird instead
   ];
   environment.systemPackages = with pkgs; [
     cinnamon.nemo

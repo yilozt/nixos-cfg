@@ -46,9 +46,12 @@
     qbittorrent
     scrcpy
     tdesktop
+    thunderbird
+    birdtray
     wget
     wpsoffice-cn
     xorg.libXcursor
     yi-pkg.system-monitoring-center
+    vlc
   ];
 }

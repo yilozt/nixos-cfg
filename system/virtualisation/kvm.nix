@@ -29,19 +29,24 @@ in
     libvirtd = {
       enable = true;
       qemu.ovmf.enable = true;
-      qemu.package = pkgs.qemu_full.overrideAttrs (oldAttrs: {
-        patches = oldAttrs.patches ++ [ ./qemu-60fps.diff ]; # 60fps in spice & gtk
-      });
-      qemu.verbatimConfig = ''
-        user = "luo"
-      '';
+      # qemu.package = pkgs.qemu_full.overrideAttrs (oldAttrs: rec {
+      #   version = "7.1.0";
+      #   src = pkgs.fetchurl {
+      #     url = "https://download.qemu.org/qemu-${version}.tar.xz";
+      #     sha256 = "1rmvrgqjhrvcmchnz170dxvrrf14n6nm39y8ivrprmfydd9lwqx0";
+      #   };
+      #   patches = oldAttrs.patches ++ [ ./qemu-60fps.diff ]; # 60fps in spice & gtk
+      # });
+      # qemu.verbatimConfig = ''
+      #   user = "luo"
+      # '';
     };
   };
 
   # Create devices used by vm
   systemd.services.vm-disks-loop-devices =
     let
-      WIN = "/dev/disk/by-uuid/8E3838E53838CDC9";  # C:\
+      WIN = "/dev/disk/by-uuid/FE84C4DE84C49A93";  # C:\
       DATA = "/dev/disk/by-uuid/206DEB911AFAD695"; # D:\
     in
     {

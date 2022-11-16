@@ -51,6 +51,7 @@
     gnome.gnome-tweaks
     git
     exa
+    bat
     xorg.xhost
     compsize
   ];
@@ -67,13 +68,14 @@
   environment.shellAliases = {
     rbnix = "sudo nixos-rebuild switch --flake '.#' -L";
     ls = "exa";
+    cat = "bat";
     flib = "pkg-config --list-all|grep";
     phone = "scrcpy -Smw 1024";
 
     # Different development environment
     rustdev = "nix-shell -p rustup gcc lldb --run 'codium -n'";
     godev = "nix-shell -p go gotools gdb delve --run 'codium -n'";
-    cppdev = "nix-shell -p stdenv gdb valgrind --run 'codium -n'";
+    cppdev = "nix-shell -p stdenv gdb lldb valgrind --run 'codium -n'";
   };
 
   # Open ports in the firewall.

@@ -1,4 +1,7 @@
 { lib, pkgs, ... }: {
+  nixpkgs.overlays = [
+    (import ./overlay.nix { })
+  ];
   imports = [
     ./base.nix
     ./boot.nix

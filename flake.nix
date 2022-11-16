@@ -3,7 +3,7 @@
 
   inputs = {
     # lock commit hash to nixos-unstable
-    nixpkgs.url = "nixpkgs/2e193264db568a42b342e4b914dc314383a6194c";
+    nixpkgs.url = "nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager";
 
     #nur.url = "github:nix-community/NUR";

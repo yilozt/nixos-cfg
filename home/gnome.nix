@@ -11,7 +11,7 @@ let
     alphabetical-app-grid
     dash-to-dock
     # dynamic-panel-transparency
-    # just-perfection
+    just-perfection
     lock-keys
     tray-icons-reloaded
     gtk-title-bar
@@ -31,11 +31,6 @@ in
 
   # Dconf settings of gnome application / extensions
   dconf.settings = with lib.hm.gvariant; {
-
-    # Receive email when application closes
-    "org/gnome/Geary" = {
-      startup-notifications = true;
-    };
 
     # --------------- Gnome Shell ----------------
 
