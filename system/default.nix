@@ -1,6 +1,6 @@
 { lib, pkgs, ... }: {
   nixpkgs.overlays = [
-    (import ./overlay.nix { })
+    # (import ./overlay.nix { inherit pkgs; })
   ];
   imports = [
     ./base.nix

@@ -46,7 +46,7 @@ in
   # Create devices used by vm
   systemd.services.vm-disks-loop-devices =
     let
-      WIN = "/dev/disk/by-uuid/FE84C4DE84C49A93";  # C:\
+      WIN = "/dev/disk/by-uuid/6E0236140235E22F";  # C:\
       DATA = "/dev/disk/by-uuid/206DEB911AFAD695"; # D:\
     in
     {

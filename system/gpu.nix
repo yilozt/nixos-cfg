@@ -10,6 +10,7 @@ let nv-env = ''
 prime-run = pkgs.writeShellScriptBin "prime-run" nv-env;
 in
 {
+  hardware.nvidia.modesetting.enable = true;
   services.xserver.videoDrivers = [ "nvidia" ];
   nixpkgs.config.packageOverrides = pkgs: {
     vaapiIntel = pkgs.vaapiIntel.override { enableHybridCodec = true; };

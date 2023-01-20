@@ -10,28 +10,6 @@
   # enable flatpak
   services.flatpak.enable = true;
 
-  # Add a new session to launch gnome-shell with nvidia driver
-  services.xserver.displayManager.session = [
-    {
-      manage = "desktop";
-      name = "Gnome-Nvidia";
-      start = ''
-        export XDG_SESSION_TYPE=x11
-        export GDK_BACKEND=x11
-        export __NV_PRIME_RENDER_OFFLOAD=1
-        export __NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0
-        export __GLX_VENDOR_LIBRARY_NAME=nvidia
-        export __VK_LAYER_NV_optimus=NVIDIA_only
-        ${pkgs.gnome.gnome-session}/bin/gnome-session &
-        waitPID=$!
-        unset __NV_PRIME_RENDER_OFFLOAD
-        unset __NV_PRIME_RENDER_OFFLOAD_PROVIDER
-        unset __GLX_VENDOR_LIBRARY_NAME
-        unset __VK_LAYER_NV_optimus
-      '';
-    }
-  ];
-
   # Workaround for GNOME autologin:
   # https://github.com/NixOS/nixpkgs/issues/103746#issuecomment-945091229
   # systemd.services."getty@tty1".enable = false;

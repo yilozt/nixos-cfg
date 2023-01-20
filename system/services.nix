@@ -3,8 +3,6 @@
 { stdenv, pkgs, ... }:
 
 let
-  v2raya_pkg = pkgs.yi-pkg.v2raya-bin;
-
   # A simple function to create systemd services
   simple_service = { ... } @ service: {
     serviceConfig = {

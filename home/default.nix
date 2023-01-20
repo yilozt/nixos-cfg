@@ -37,6 +37,7 @@
         wine = wineWowPackages.staging;
       };
     })
+    feishu
     mangohud
     newsflash
     nix-index
@@ -53,5 +54,6 @@
     xorg.libXcursor
     yi-pkg.system-monitoring-center
     vlc
+    nur.repos.linyinfeng.wemeet
   ];
 }

@@ -61,6 +61,9 @@
     experimental-features = nix-command flakes
   '';
 
+  # nix settings
+  nix.settings.stalled-download-timeout = 10;
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 

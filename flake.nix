@@ -6,18 +6,18 @@
     nixpkgs.url = "nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager";
 
-    #nur.url = "github:nix-community/NUR";
+    nur.url = "github:nix-community/NUR";
     #.url = "github:nixos-cn/flakes";
     #nur-pkgs.url = github:ocfox/nur-pkgs;
 
     yi-pkg.url = "github:yilozt/nurpkg";
   };
 
-  outputs = inputs @ { self, home-manager, ... }:
+  outputs = inputs @ { self, home-manager, nur, ... }:
     let
       # Apply remote patches to nixpkgs
       # ref; https://github.com/NixOS/nixpkgs/pull/142273#issuecomment-948225922
-      remoteNixpkgsPatches = [];
+      remoteNixpkgsPatches = [ ];
       system = "x86_64-linux";
       originPkgs = inputs.nixpkgs.legacyPackages."x86_64-linux";
       nixpkgs = originPkgs.applyPatches {
@@ -54,13 +54,13 @@
             {
               imports = [
                 # Services for v2raya
-                inputs.yi-pkg.nixosModules.v2raya
+                # inputs.yi-pkg.nixosModules.v2raya
               ];
 
               nixpkgs.overlays = [
                 # Install packages from nur:
                 # add nur.repo.<username>.<packagename> to packages list 
-                # nur.overlay
+                nur.overlay
 
                 # nixos-cn.<pkgname>
                 # nixos-cn.overlay
@@ -73,12 +73,16 @@
               # 使用 nixos-cn 的 binary cache
               nix.settings.substituters = [
                 # "https://nixos-cn.cachix.org"
-                # "https://mirror.sjtu.edu.cn/nix-channels/store"
-                # "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
+                "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
                 "https://mirrors.ustc.edu.cn/nix-channels/store"
+                "https://mirror.sjtu.edu.cn/nix-channels/store"
               ];
               nix.settings.trusted-public-keys = [
                 # "nixos-cn.cachix.org-1:L0jEaL6w7kwQOPlLoCR3ADx+E3Q8SEFEcB9Jaibl0Xg="
+              ];
+
+              nixpkgs.config.permittedInsecurePackages = [
+                "qtwebkit-5.212.0-alpha4"
               ];
             }
           ];
