@@ -3,8 +3,11 @@
 
   inputs = {
     # lock commit hash to nixos-unstable
-    nixpkgs.url = "nixpkgs/nixos-unstable";
-    home-manager.url = "github:nix-community/home-manager";
+    nixpkgs.url = "nixpkgs/8065069c54c21c7cc8d6aed7726c5d5acf21b666";
+    home-manager.url = "github:nix-community/home-manager/release-22.11";
+
+    # NixOS 22.05
+    nixos_2205.url = "nixpkgs/nixos-22.05";
 
     nur.url = "github:nix-community/NUR";
     #.url = "github:nixos-cn/flakes";
@@ -68,6 +71,9 @@
                 (final: prev: with inputs; {
                   yi-pkg = yi-pkg.packages."${prev.system}";
                 })
+                (final: prev: with inputs; {
+                  nixos_2205 = nixos_2205.legacyPackages."${prev.system}";
+                })
               ];
 
               # 使用 nixos-cn 的 binary cache
@@ -79,10 +85,6 @@
               ];
               nix.settings.trusted-public-keys = [
                 # "nixos-cn.cachix.org-1:L0jEaL6w7kwQOPlLoCR3ADx+E3Q8SEFEcB9Jaibl0Xg="
-              ];
-
-              nixpkgs.config.permittedInsecurePackages = [
-                "qtwebkit-5.212.0-alpha4"
               ];
             }
           ];

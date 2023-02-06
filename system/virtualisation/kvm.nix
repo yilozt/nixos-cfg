@@ -14,7 +14,7 @@ in
 
   };
 
-  users.extraUsers.luo.extraGroups = [ "kvm" "libvirtd" "disk" "video" ];
+  users.extraUsers.luo.extraGroups = [ "kvm" "libvirtd" "qemu-libvirtd" "disk" "video" ];
 
   # Intel GVT-g
   virtualisation = {
@@ -29,6 +29,9 @@ in
     libvirtd = {
       enable = true;
       qemu.ovmf.enable = true;
+      qemu.verbatimConfig = ''
+        user = "luo"
+      '';
       # qemu.package = pkgs.qemu_full.overrideAttrs (oldAttrs: rec {
       #   version = "7.1.0";
       #   src = pkgs.fetchurl {
@@ -68,28 +71,28 @@ in
         --verbose /dev/md0 \
         --chunk=512 \
         --level=linear \
-        --raid-devices=3 $LOOP1 ${WIN} $LOOP2
+        --raid-devices=3 $LOOP1 ${WIN} $LOOP2 || true
         mdadm \
           --build \
           --verbose /dev/md1 \
           --chunk=512 \
           --level=linear \
-          --raid-devices=3 $LOOP3 ${DATA} $LOOP4
+          --raid-devices=3 $LOOP3 ${DATA} $LOOP4 || true
 
         # Waiting stop or reload services
         sleep infinity
       '';
       reload = "kill -SIGHUP $MAINPID";
       preStop = ''
-        mdadm --stop /dev/md0
-        mdadm --stop /dev/md1
+        mdadm --stop /dev/md0 || true
+        mdadm --stop /dev/md1 || true
         xargs losetup -d < /tmp/win-loop-devices
       '';
       serviceConfig = {
         Type = "simple";
-      };
-      path = with pkgs; [ util-linux mdadm coreutils-full xorg.xhost ];
     };
+      path = with pkgs; [ util-linux mdadm coreutils-full xorg.xhost ];
+  };
 
   environment.systemPackages =
     let

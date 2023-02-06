@@ -8,8 +8,7 @@
   ];
 
   # Install home-manager package
-  programs.home-manager.enable = true;
-  home.stateVersion = "22.05";
+  home.stateVersion = "22.11";
   gtk = let extra_cfg = { gtk-application-prefer-dark-theme = 1; }; in
     {
       enable = true;
@@ -29,7 +28,7 @@
     blackbox-terminal # A beautiful GTK4 terminal
     dfeet # Debug dbus sessions
     firefox-bin
-    goldendict
+    nixos_2205.goldendict
     gnome.gnome-boxes
     keepassxc
     (lutris.override {
@@ -54,6 +53,9 @@
     xorg.libXcursor
     yi-pkg.system-monitoring-center
     vlc
+    ubuntu_font_family
+    quartus-prime-lite
+    microsoft-edge
     nur.repos.linyinfeng.wemeet
   ];
 }
