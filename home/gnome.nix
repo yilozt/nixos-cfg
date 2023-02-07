@@ -24,9 +24,8 @@ let
 
   # UUID list of extensions
   uuid = builtins.map (e: e.passthru.extensionUuid) extensions;
-in
 
-{
+in {
 
   # Gnome shell extensions
   home.packages = extensions;
@@ -79,16 +78,16 @@ in
       disable-overview-on-startup = true;
       dock-position = "LEFT";
       extend-height = true;
-      height-fraction = 0.93999999999999995;
+      height-fraction = 0.94;
       icon-size-fixed = false;
       intellihide = false;
       intellihide-mode = "ALL_WINDOWS";
       isolate-monitors = true;
       isolate-workspaces = false;
-      max-alpha = 0.84999999999999998;
-      min-alpha = 0.34000000000000002;
+      max-alpha = 0.85;
+      min-alpha = 0.34;
       multi-monitor = true;
-      preview-size-scale = 0.23999999999999999;
+      preview-size-scale = 0.24;
       running-indicator-style = "DOTS";
       scroll-to-focused-application = true;
       show-apps-at-top = false;
@@ -147,7 +146,8 @@ in
     "org/gnome/shell/extensions/vitals" = {
       alphabetize = "true";
       fixed-widths = "true";
-      hot-sensors = [ "_memory_usage_" "__network-rx_max__" "_processor_usage_" ];
+      hot-sensors =
+        [ "_memory_usage_" "__network-rx_max__" "_processor_usage_" ];
       position-in-panel = 0;
       show-battery = false;
       show-fan = false;
@@ -159,8 +159,6 @@ in
       use-higher-precision = false;
     };
 
-    "org/gnome/shell/extensions/x11gestures" = {
-      swipe-fingers = 3;
-    };
+    "org/gnome/shell/extensions/x11gestures" = { swipe-fingers = 3; };
   };
 }

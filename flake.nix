@@ -2,92 +2,87 @@
   description = "NixOS configurations, power by flakes & home-manager";
 
   inputs = {
-    # lock commit hash to nixos-unstable
-    nixpkgs.url = "nixpkgs/8065069c54c21c7cc8d6aed7726c5d5acf21b666";
-    home-manager.url = "github:nix-community/home-manager/release-22.11";
-
-    # NixOS 22.05
+    nixpkgs.url = "nixpkgs/5a350a8f31bb7ef0c6e79aea3795a890cf7743d4";
+    quartus.url = "nixpkgs/8065069c54c21c7cc8d6aed7726c5d5acf21b666";
     nixos_2205.url = "nixpkgs/nixos-22.05";
-
+    home-manager.url = "github:nix-community/home-manager/release-22.11";
     nur.url = "github:nix-community/NUR";
-    #.url = "github:nixos-cn/flakes";
-    #nur-pkgs.url = github:ocfox/nur-pkgs;
-
     yi-pkg.url = "github:yilozt/nurpkg";
   };
 
-  outputs = inputs @ { self, home-manager, nur, ... }:
+  outputs =
+    inputs@{ self, yi-pkg, home-manager, nur, nixpkgs, quartus, nixos_2205 }:
     let
-      # Apply remote patches to nixpkgs
-      # ref; https://github.com/NixOS/nixpkgs/pull/142273#issuecomment-948225922
-      remoteNixpkgsPatches = [ ];
+
       system = "x86_64-linux";
-      originPkgs = inputs.nixpkgs.legacyPackages."x86_64-linux";
-      nixpkgs = originPkgs.applyPatches {
-        name = "nixpkgs-patched";
-        src = inputs.nixpkgs;
-        patches = map originPkgs.fetchpatch remoteNixpkgsPatches;
+
+      # Extra args
+      # Those args will be pass to ./configuration.nix
+
+      extra_args = {
+        quartus = import quartus {
+          inherit system;
+          config.allowUnfree = true;
+        };
+        nixos_2205 = import nixos_2205 { inherit system; };
       };
-      # nixosSystem = import (nixpkgs + "/nixos/lib/eval-config.nix");
-      # Uncomment to use a Nixpkgs without remoteNixpkgsPatches
-      nixosSystem = inputs.nixpkgs.lib.nixosSystem;
-    in
-    {
+    in {
 
-      # Used with `nixos-rebuild --flake .#<hostname>`
-      # nixosConfigurations."<hostname>".config.system.build.toplevel must be a derivation
-      nixosConfigurations.luo = nixosSystem {
+      # Used with `nixos-rebuild --flake .#<hostname>` to rebuild system.
+      # nixosConfigurations."<hostname>".config.system.build.toplevel
+      # must be a derivation
+
+      nixosConfigurations.luo = import ./patches.nix {
         inherit system;
-        specialArgs = { inherit inputs; };
-        modules =
-          [
-            # System wide configuration
-            ./configuration.nix
+        inherit nixpkgs;
 
-            # User configuration
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.luo = originPkgs.lib.mkMerge [
-                ./home
-              ];
-            }
+        # Apply remote patches to nixpkgs
+        # Ref: https://github.com/NixOS/nixpkgs/pull/142273#issuecomment-948225922
 
-            {
-              imports = [
-                # Services for v2raya
-                # inputs.yi-pkg.nixosModules.v2raya
-              ];
+        patches = [ ];
+      } {
+        inherit system;
 
-              nixpkgs.overlays = [
-                # Install packages from nur:
-                # add nur.repo.<username>.<packagename> to packages list 
-                nur.overlay
+        # Pass extra arguments to configurations
 
-                # nixos-cn.<pkgname>
-                # nixos-cn.overlay
+        specialArgs = extra_args;
+        modules = [
 
-                (final: prev: with inputs; {
+          # System wide configuration
+
+          ./configuration.nix
+
+          # User configuration
+
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.luo = nixpkgs.lib.mkMerge [ ./home ];
+            home-manager.extraSpecialArgs = extra_args;
+          }
+
+          {
+            nixpkgs.overlays = [
+
+              # Install packages from nur:
+              # add nur.repo.<username>.<packagename> to packages list 
+
+              nur.overlay
+
+              (final: prev:
+                with inputs; {
                   yi-pkg = yi-pkg.packages."${prev.system}";
                 })
-                (final: prev: with inputs; {
-                  nixos_2205 = nixos_2205.legacyPackages."${prev.system}";
-                })
-              ];
+            ];
 
-              # 使用 nixos-cn 的 binary cache
-              nix.settings.substituters = [
-                # "https://nixos-cn.cachix.org"
-                "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
-                "https://mirrors.ustc.edu.cn/nix-channels/store"
-                "https://mirror.sjtu.edu.cn/nix-channels/store"
-              ];
-              nix.settings.trusted-public-keys = [
-                # "nixos-cn.cachix.org-1:L0jEaL6w7kwQOPlLoCR3ADx+E3Q8SEFEcB9Jaibl0Xg="
-              ];
-            }
-          ];
+            nix.settings.substituters = [
+              "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
+              "https://mirrors.ustc.edu.cn/nix-channels/store"
+              "https://mirror.sjtu.edu.cn/nix-channels/store"
+            ];
+          }
+        ];
       };
     };
 }

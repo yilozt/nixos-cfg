@@ -1,9 +1,8 @@
 { ... }:
 
 let alias = { };
-in
 
-{
+in {
   programs.fish.shellAliases = alias;
   programs.fish.enable = true;
 }

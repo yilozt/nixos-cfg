@@ -1,9 +1,7 @@
 { pkgs, ... }:
 
 {
-  imports = [
-    ./kvm.nix
-  ];
+  imports = [ ./kvm.nix ];
 
   virtualisation = {
     lxd.enable = true;

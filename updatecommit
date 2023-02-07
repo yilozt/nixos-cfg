@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+curl https://mirrors.tuna.tsinghua.edu.cn/nix-channels/nixpkgs-unstable/git-revision

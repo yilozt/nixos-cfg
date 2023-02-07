@@ -1,7 +1,7 @@
 { pkgs, ... }: {
   boot = {
     supportedFilesystems = [ "ntfs" ];
-    
+
     loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
@@ -12,8 +12,6 @@
     kernelPackages = pkgs.linuxPackages_zen;
 
     # Setup keyfile
-    initrd.secrets = {
-      "/crypto_keyfile.bin" = null;
-    };
+    initrd.secrets = { "/crypto_keyfile.bin" = null; };
   };
 }

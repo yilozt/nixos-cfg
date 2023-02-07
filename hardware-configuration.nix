@@ -4,32 +4,32 @@
 { config, lib, pkgs, modulesPath, ... }:
 
 {
-  imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
-    ];
+  imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" "rtsx_usb_sdmmc" ];
+  boot.initrd.availableKernelModules =
+    [ "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" "rtsx_usb_sdmmc" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
-  fileSystems."/" =
-    { device = "/dev/disk/by-uuid/b0915d99-d372-40f5-87ba-8f485cd244d1";
-      fsType = "btrfs";
-      options = [ "subvol=@" ];
-    };
+  fileSystems."/" = {
+    device = "/dev/disk/by-uuid/b0915d99-d372-40f5-87ba-8f485cd244d1";
+    fsType = "btrfs";
+    options = [ "subvol=@" ];
+  };
 
-  boot.initrd.luks.devices."luks-89f6c00b-2095-42f2-8cd8-0f7b326135de".device = "/dev/disk/by-uuid/89f6c00b-2095-42f2-8cd8-0f7b326135de";
+  boot.initrd.luks.devices."luks-89f6c00b-2095-42f2-8cd8-0f7b326135de".device =
+    "/dev/disk/by-uuid/89f6c00b-2095-42f2-8cd8-0f7b326135de";
 
-  fileSystems."/boot/efi" =
-    { device = "/dev/disk/by-uuid/B78E-79F4";
-      fsType = "vfat";
-    };
+  fileSystems."/boot/efi" = {
+    device = "/dev/disk/by-uuid/B78E-79F4";
+    fsType = "vfat";
+  };
 
-  fileSystems."/home" =
-    { device = "/dev/disk/by-uuid/cd084cd2-27b9-4b2b-aeeb-8921d6f7ed21";
-      fsType = "ext4";
-    };
+  fileSystems."/home" = {
+    device = "/dev/disk/by-uuid/cd084cd2-27b9-4b2b-aeeb-8921d6f7ed21";
+    fsType = "ext4";
+  };
 
   swapDevices = [ ];
 
@@ -42,5 +42,6 @@
   # networking.interfaces.wlp3s0.useDHCP = lib.mkDefault true;
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
-  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.cpu.intel.updateMicrocode =
+    lib.mkDefault config.hardware.enableRedistributableFirmware;
 }

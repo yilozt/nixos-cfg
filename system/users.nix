@@ -2,7 +2,7 @@
 
 {
   programs.fish.enable = true;
-  
+
   users = {
     users.luo = {
       isNormalUser = true;
