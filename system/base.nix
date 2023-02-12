@@ -1,7 +1,6 @@
 { config, lib, pkgs, ... }:
 
 {
-  nix.readOnlyStore = false;
   fileSystems = { "/".options = [ "compress=zstd" ]; };
 
   time.timeZone = "Asia/Shanghai";
@@ -52,6 +51,7 @@
     bat
     xorg.xhost
     compsize
+    nixpkgs-fmt
   ];
 
   # Enable nix command

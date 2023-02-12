@@ -2,7 +2,8 @@
   description = "NixOS configurations, power by flakes & home-manager";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/5a350a8f31bb7ef0c6e79aea3795a890cf7743d4";
+    nixpkgs.url = "nixpkgs/nixos-unstable";
+    # nixpkgs.url = "nixpkgs/5a350a8f31bb7ef0c6e79aea3795a890cf7743d4";
     quartus.url = "nixpkgs/8065069c54c21c7cc8d6aed7726c5d5acf21b666";
     nixos_2205.url = "nixpkgs/nixos-22.05";
     home-manager.url = "github:nix-community/home-manager/release-22.11";
