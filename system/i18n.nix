@@ -6,8 +6,7 @@
     supportedLocales = [ "zh_CN.UTF-8/UTF-8" "en_US.UTF-8/UTF-8" ];
 
     inputMethod = {
-      enabled = "ibus";
-
+      enabled = "fcitx5";
       ibus.engines = with pkgs.ibus-engines; [ libpinyin rime ];
 
       fcitx5.addons = with pkgs; [

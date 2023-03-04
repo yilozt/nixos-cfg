@@ -46,6 +46,5 @@
   # Style of qt
   qt5.style = "gtk2";
   qt5.platformTheme = "qt5ct";
-  programs.xwayland.enable = false;
-  environment.variables.QT_QPA_PLATFORM = "wayland";
+  programs.xwayland.enable = true;
 }

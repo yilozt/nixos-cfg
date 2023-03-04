@@ -7,8 +7,7 @@
   in {
     enable = true;
     theme = {
-      package = pkgs.yi-pkg.colloid-gtk-theme;
-      name = "Colloid-Dark-Compact-Nord";
+      name = "Sweet";
     };
     gtk3.extraConfig = extra_cfg;
     gtk4.extraConfig = extra_cfg;

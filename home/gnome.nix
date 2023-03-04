@@ -12,6 +12,7 @@ let
     dash-to-dock
     # dynamic-panel-transparency
     # just-perfection
+    kimpanel
     lock-keys
     tray-icons-reloaded
     gtk-title-bar
@@ -40,7 +41,7 @@ in {
       disable-user-extensions = false;
       enabled-extensions = uuid ++ [
         "rounded-window-corners@yilozt"
-        "material-you-theme@asubbiah.com"
+        "blur-my-shell@aunetx"
       ];
       disabled-extensions = [ ];
     };
