@@ -9,7 +9,7 @@
     };
 
     # Linux kernel
-    kernelPackages = pkgs.linuxPackages_zen;
+    kernelPackages = pkgs.linuxPackages_latest;
 
     # Setup keyfile
     initrd.secrets = { "/crypto_keyfile.bin" = null; };

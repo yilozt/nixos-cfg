@@ -1,21 +1,37 @@
 { pkgs, ... }:
 
+let
+  pkgs_prog = with pkgs; with vscode-extensions; {
+    go = {
+      pkg = [ go gotools gdb delve ];
+      vscode_ext = [ golang.go ];
+    };
+    cpp = {
+      pkg = [ gdb lldb valgrind pkg-config cmake gnumake ];
+      vscode_ext = [ ms-vscode.cpptools ms-vscode.cmake-tools ];
+    };
+    rust = {
+      pkg = [ rustup gcc lldb pkg-config cmake gnumake fontconfig ];
+      vscode_ext = [ rust-lang.rust-analyzer ];
+    };
+  };
+  enable_progs = [ "cpp" "rust" ];
+  pkglst = builtins.concatLists (builtins.map (p: pkgs_prog."${p}".pkg) enable_progs);
+  vscode_ext_lst = builtins.concatLists (builtins.map (p: pkgs_prog."${p}".vscode_ext) enable_progs);
+in
 {
   environment.systemPackages = with pkgs; [
-    texlive.combined.scheme-full
     (vscode-with-extensions.override {
       vscodeExtensions = with vscode-extensions;
         [
+          jock.svg
           jnoortheen.nix-ide
           github.github-vscode-theme
           james-yu.latex-workshop
           # ms-python.python
-          ms-vscode.cpptools
-          ms-vscode.cmake-tools
           twxs.cmake
           vscodevim.vim
           ms-vscode-remote.remote-ssh
-          golang.go
           ms-ceintl.vscode-language-pack-zh-hans
           eamodio.gitlens
           mhutchie.git-graph
@@ -54,7 +70,13 @@
             version = "3.0.0";
             sha256 = "sha256-wIsY6Fuhs676EH8rSz4fTHemVhOe5Se9SY3Q9iAqr1M=";
           }
-        ];
+          {
+            name = "volar";
+            publisher = "vue";
+            version = "1.2.0";
+            sha256 = "sha256-rIvZEl2KxT8m7lFQZ3lIRzksmxIx2+tKFR7v2HCj/XM=";
+          }
+        ] ++ vscode_ext_lst;
     })
-  ];
+  ] ++ pkglst;
 }
