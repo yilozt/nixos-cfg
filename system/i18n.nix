@@ -7,7 +7,7 @@
 
     inputMethod = {
       enabled = "fcitx5";
-      ibus.engines = with pkgs.ibus-engines; [ libpinyin rime ];
+      # ibus.engines = with pkgs.ibus-engines; [ libpinyin rime ];
 
       fcitx5.addons = with pkgs; [
         fcitx5-chinese-addons

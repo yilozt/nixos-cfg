@@ -1,5 +1,5 @@
 { pkgs, quartus, nixos_2205, ... }: {
-  imports = [ ./shell.nix ./gnome.nix ./git.nix ];
+  imports = [ ./shell.nix ./gnome.nix ./git.nix ./hyprland ];
 
   # Install home-manager package
   home.stateVersion = "22.11";
@@ -44,10 +44,10 @@
     wget
     wpsoffice-cn
     xorg.libXcursor
-    yi-pkg.system-monitoring-center
+    # yi-pkg.system-monitoring-center
     vlc
     ubuntu_font_family
-    quartus.quartus-prime-lite
+    # quartus.quartus-prime-lite
     microsoft-edge
     nur.repos.linyinfeng.wemeet
   ];

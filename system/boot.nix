@@ -12,6 +12,6 @@
     kernelPackages = pkgs.linuxPackages_latest;
 
     # Setup keyfile
-    initrd.secrets = { "/crypto_keyfile.bin" = null; };
+    # initrd.secrets = { "/crypto_keyfile.bin" = null; };
   };
 }

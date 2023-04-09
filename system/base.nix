@@ -1,7 +1,10 @@
 { config, lib, pkgs, ... }:
 
 {
-  fileSystems = { "/".options = [ "compress=zstd" ]; };
+  fileSystems = {
+  "/".options = [ "compress=zstd" ];
+  "/nix".options = [ "compress=zstd" "noatime" ];
+};    
 
   time.timeZone = "Asia/Shanghai";
 
@@ -35,7 +38,7 @@
 
   # Steam
   programs.steam.enable = true;
-  programs.steam.remotePlay.openFirewall = true;
+  programs.steam.remotePlay.openFirewall = false;
   hardware.steam-hardware.enable = true;
 
   # gnupg
@@ -82,11 +85,14 @@
     cppdev = "nix-shell -p stdenv gdb lldb valgrind --run 'codium -n'";
   };
 
+  programs.dconf.enable = true;
+
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
+  networking.firewall.enable = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

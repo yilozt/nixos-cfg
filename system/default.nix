@@ -5,12 +5,12 @@
   imports = [
     ./base.nix
     ./boot.nix
-    ./desktop
+    # ./desktop
     ./gpu.nix
     ./i18n.nix
     ./services.nix
     ./users.nix
-    ./virtualisation
+    # ./virtualisation
     ./vscodium.nix
   ];
 }
