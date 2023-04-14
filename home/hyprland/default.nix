@@ -18,6 +18,7 @@
     python3
     pciutils
     (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
+    (callPackage ../../pkgs/pandora-chatgpt)
   ];
 
   xdg.enable = true;
@@ -206,7 +207,7 @@
       # █▀▄▀█ █ █▀ █▀▀
       # █░▀░█ █ ▄█ █▄▄
       bind = SUPER SHIFT, X, exec, colorpicker
-      bind = CTRL ALT, L, exec, swaylock
+      # bind = CTRL ALT, L, exec, swaylock
       bind = SUPER, Return, exec, wezterm
       bind = SUPER, E, exec, thunar
       # bind = SUPER, D, exec, wofi --show drun -I -m -i
