@@ -50,7 +50,7 @@
       # exec-once = wlsunset -t 4500 -S 9:00 -s 19:30
       exec-once = auto_start
       exec-once = systemctl --user restart pipewire
-      exec-once = swaybg -m fill -i ~/.wallpapers/smile.jpg
+      exec-once = swaybg -m fill -i ~/.wallpapers/old.png
       exec-once = waybar
       exec-once = fcitx5
       #exec-once = gBar bar 0
