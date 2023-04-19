@@ -1,6 +1,6 @@
 # Extra enabled / custom services
 
-{ stdenv, pkgs, ... }:
+{ stdenv, pkgs, lib, ... }:
 
 let
   # A simple function to create systemd services
@@ -21,7 +21,10 @@ let
 in {
   services.v2raya.enable = true;
   services.touchegg.enable = true;
-  services.gvfs.enable = true;
+  services.gvfs = {
+    enable = true;
+    package = lib.mkForce pkgs.gnome3.gvfs;
+  }; 
 
   # systemd.services = { inherit setup_keycode_map; };
 }

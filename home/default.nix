@@ -1,6 +1,7 @@
 { pkgs, quartus, nixos_2205, ... }: {
-  imports = [ ./shell.nix ./gnome.nix ./git.nix
+  imports = [ ./shell.nix ./git.nix
     ./hyprland
+    # ./gnome.nix 
   ];
 
   # Install home-manager package
@@ -26,10 +27,10 @@
     blackbox-terminal # A beautiful GTK4 terminal
     dfeet # Debug dbus sessions
     nixos_2205.goldendict # keep to NixOS because I want not to rebuild webkit-qt
-    (lutris.override {
-      lutris-unwrapped =
-        lutris-unwrapped.override { wine = wineWowPackages.staging; };
-    })
+    # (lutris.override {
+    #   lutris-unwrapped =
+    #     lutris-unwrapped.override { wine = wineWowPackages.staging; };
+    # })
     feishu
     newsflash
     nix-index
