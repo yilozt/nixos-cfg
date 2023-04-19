@@ -33,6 +33,7 @@ in {
     powerManagement.enable = true;
   };
 
+  boot.kernelParams = [ "i915.force_probe=a7a0" ];
   environment.systemPackages = with pkgs; [ prime-run ];
   environment.variables.VK_ICD_FILENAMES =
     [ "/run/opengl-driver/share/vulkan/icd.d/nvidia_icd.x86_64.json" ];

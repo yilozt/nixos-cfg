@@ -1,5 +1,7 @@
 { pkgs, quartus, nixos_2205, ... }: {
-  imports = [ ./shell.nix ./gnome.nix ./git.nix ./hyprland ];
+  imports = [ ./shell.nix ./gnome.nix ./git.nix
+    ./hyprland
+  ];
 
   # Install home-manager package
   home.stateVersion = "22.11";
@@ -50,5 +52,7 @@
     # quartus.quartus-prime-lite
     microsoft-edge
     nur.repos.linyinfeng.wemeet
+    vivado
+    (callPackage ../pkgs/pandora-chatgpt {})
   ];
 }

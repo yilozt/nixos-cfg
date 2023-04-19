@@ -21,6 +21,7 @@ let
 in {
   services.v2raya.enable = true;
   services.touchegg.enable = true;
+  services.gvfs.enable = true;
 
-  systemd.services = { inherit setup_keycode_map; };
+  # systemd.services = { inherit setup_keycode_map; };
 }

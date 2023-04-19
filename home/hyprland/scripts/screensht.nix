@@ -43,7 +43,7 @@ let
     }
 
     function get_latest_img() { 
-        _LATEST_IMAGE_=$(/bin/ls -th $_SCREENSHOT_DIR_ | grep -vE '.screensht.png$' | grep -E '.png$' | head -n 1)
+        _LATEST_IMAGE_=$(ls -th $_SCREENSHOT_DIR_ | grep -vE '.screensht.png$' | grep -E '.png$' | head -n 1)
 
         if [[ $( echo "$_LATEST_IMAGE_" | wc -w ) -eq 0 ]]; then
             exit 1

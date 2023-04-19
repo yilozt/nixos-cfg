@@ -10,10 +10,21 @@
     yi-pkg.url = "github:yilozt/nurpkg";
     hyprland.url = "github:hyprwm/Hyprland";
     xdg-desktop-portal-hyprland.url = "github:hyprwm/xdg-desktop-portal-hyprland";
+    nix-xilinx.url = "gitlab:doronbehar/nix-xilinx";
   };
 
   outputs =
-    inputs@{ self, yi-pkg, home-manager, nur, nixpkgs, quartus, nixos_2205, hyprland, xdg-desktop-portal-hyprland }:
+    inputs@{ self
+    , yi-pkg
+    , home-manager
+    , nur
+    , nixpkgs
+    , quartus
+    , nixos_2205
+    , hyprland
+    , xdg-desktop-portal-hyprland
+    , nix-xilinx
+    }:
     let
 
       system = "x86_64-linux";
@@ -77,6 +88,7 @@
               };
             }
 
+
             {
               nixpkgs.overlays = [
 
@@ -84,6 +96,8 @@
                 # add nur.repo.<username>.<packagename> to packages list 
 
                 nur.overlay
+
+                nix-xilinx.overlay
 
                 (final: prev:
                   with inputs; {

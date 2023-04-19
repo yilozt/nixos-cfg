@@ -22,7 +22,7 @@ return {
 	dpi = 144.0,
 
 	-- Cursor style
-	default_cursor_style = "BlinkingUnderline",
+	default_cursor_style = "BlinkingBlock",
 
 	-- X11
 	enable_wayland = true,

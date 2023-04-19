@@ -87,6 +87,13 @@
 
   programs.dconf.enable = true;
 
+  # adb
+  programs.adb.enable = true;
+  users.users."luo".extraGroups = ["adbusers"];
+  services.udev.packages = [
+    pkgs.android-udev-rules
+  ];
+
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];

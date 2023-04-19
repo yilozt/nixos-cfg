@@ -10,7 +10,7 @@
   };
 
   home.packages = with pkgs; [
-    wlsunset
+    # wlsunset
     swaybg
     hyprpicker
     wl-clipboard
@@ -18,7 +18,8 @@
     python3
     pciutils
     (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
-    (callPackage ../../pkgs/pandora-chatgpt)
+    (callPackage ../../pkgs/pandora-chatgpt {})
+    xfce.thunar
   ];
 
   xdg.enable = true;
@@ -46,7 +47,7 @@
       # exec-once = wl-clipboard-history -t
       exec-once = dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
       exec-once = systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
-      exec-once = wlsunset -t 4500 -S 9:00 -s 19:30
+      # exec-once = wlsunset -t 4500 -S 9:00 -s 19:30
       exec-once = auto_start
       exec-once = systemctl --user restart pipewire
       exec-once = swaybg -m fill -i ~/.wallpapers/smile.jpg
@@ -56,10 +57,10 @@
 
       # █▀▄▀█ █▀█ █▄░█ █ ▀█▀ █▀█ █▀█
       # █░▀░█ █▄█ █░▀█ █ ░█░ █▄█ █▀▄
-      monitor = eDP-1,2560x1600@60,0x0,1.5
+      # monitor = eDP-1,2560x1600@60,0x0,1.5
+      monitor = ,highres,auto,1.5
       # sets xwayland scale
-      exec-once=xprop -root -f _XWAYLAND_GLOBAL_OUTPUT_SCALE 32c -set _XWAYLAND_GLOBAL_OUTPUT_SCALE 2
-      
+      exec-once = xprop -root -f _XWAYLAND_GLOBAL_OUTPUT_SCALE 32c -set _XWAYLAND_GLOBAL_OUTPUT_SCALE 2
       # toolkit-specific scale
       env = GDK_SCALE,2
       env = XCURSOR_SIZE,32

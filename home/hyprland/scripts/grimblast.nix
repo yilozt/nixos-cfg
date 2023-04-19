@@ -21,10 +21,10 @@ let
     ## https://github.com/swaywm/sway/blob/master/contrib/grimshot
 
     getTargetDirectory() {
-      test -f " ''${XDG_CONFIG_HOME:-$HOME/.config}/user-dirs.dirs" &&
-        . " ''${XDG_CONFIG_HOME:-$HOME/.config}/user-dirs.dirs"
+      test -f "''${XDG_CONFIG_HOME:-$HOME/.config}/user-dirs.dirs" &&
+        . "''${XDG_CONFIG_HOME:-$HOME/.config}/user-dirs.dirs"
 
-      echo " ''${XDG_SCREENSHOTS_DIR:- ''${XDG_PICTURES_DIR:-$HOME}}"
+      echo "''${XDG_SCREENSHOTS_DIR:-''${XDG_PICTURES_DIR:-$HOME}}"
     }
 
     tmp_editor_directory() {
@@ -62,10 +62,10 @@ let
       esac
     done
 
-    ACTION= ''${1:-usage}
-    SUBJECT= ''${2:-screen}
-    FILE= ''${3:-$(getTargetDirectory)/$(date -Ins).png}
-    FILE_EDITOR= ''${3:-$(tmp_editor_directory)/$(date -Ins).png}
+    ACTION=''${1:-'usage'}
+    SUBJECT=''${2:-'screen'}
+    FILE=''${3:-$(getTargetDirectory)/$(date -Ins).png}
+    FILE_EDITOR=''${3:-$(tmp_editor_directory)/$(date -Ins).png}
 
     if [ "$ACTION" != "save" ] && [ "$ACTION" != "copy" ] && [ "$ACTION" != "edit" ] && [ "$ACTION" != "copysave" ] && [ "$ACTION" != "check" ]; then
       echo "Usage:"
@@ -101,8 +101,8 @@ let
 
     notifyError() {
       if [ $NOTIFY = "yes" ]; then
-        TITLE= ''${2:-"Screenshot"}
-        MESSAGE= ''${1:-"Error taking screenshot with grim"}
+        TITLE=''${2:-"Screenshot"}
+        MESSAGE=''${1:-"Error taking screenshot with grim"}
         notify -u critical "$TITLE" "$MESSAGE"
       else
         echo "$1"
@@ -110,7 +110,7 @@ let
     }
 
     die() {
-      MSG= ''${1:-Bye}
+      MSG=''${1:-"Bye"}
       notifyError "Error: $MSG"
       exit 2
     }
