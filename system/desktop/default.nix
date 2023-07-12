@@ -2,7 +2,7 @@
 
 {
   imports = [
-    # ./gnome.nix
-    ./plasma.nix
+    ./gnome.nix
+    # ./plasma.nix
   ];
 }

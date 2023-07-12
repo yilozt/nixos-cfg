@@ -1,11 +1,11 @@
 { lib, pkgs, ... }: {
   nixpkgs.overlays = [
-    # (import ./overlay.nix { inherit pkgs; })
+    (import ./overlay.nix { inherit pkgs; })
   ];
   imports = [
     ./base.nix
     ./boot.nix
-#    ./desktop
+    ./desktop
     ./gpu.nix
     ./i18n.nix
     ./services.nix

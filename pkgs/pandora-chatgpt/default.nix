@@ -2,11 +2,11 @@
 
 python3.pkgs.buildPythonApplication rec {
   pname = "Pandora-ChatGPT";
-  version = "1.0.3";
+  version = "1.0.6";
 
   src = python3.pkgs.fetchPypi {
     inherit pname version;
-    sha256 = "sha256-N7QuFREU6HN+zS8xzkF1Up/zS63KpTz1PTus1G1BGPc=";
+    sha256 = "sha256-LtaRWVNG9VBO0LmCQTIL9nuYK6IwrVP2PRFdCQ+w9Zc=";
   };
 
   propagatedBuildInputs = with python3.pkgs; [
@@ -23,6 +23,7 @@ python3.pkgs.buildPythonApplication rec {
     flask-cors
     socksio
     cryptography
+    pyperclip
   ];
 
   postPatch = ''

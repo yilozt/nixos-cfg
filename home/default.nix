@@ -1,23 +1,23 @@
 { pkgs, quartus, nixos_2205, ... }: {
   imports = [ ./shell.nix ./git.nix
-    ./hyprland
-    # ./gnome.nix 
+    # ./hyprland
+    ./gnome.nix 
   ];
 
   # Install home-manager package
   home.stateVersion = "22.11";
   gtk =
-    let extra_cfg = { gtk-application-prefer-dark-theme = 0; };
+    let extra_cfg = { gtk-application-prefer-dark-theme = 1; };
     in {
       enable = true;
       theme = {
-        name = "Sweet";
+        name = "Colloid-Dark-Nord";
       };
       gtk3.extraConfig = extra_cfg;
       gtk4.extraConfig = extra_cfg;
       iconTheme = {
-        name = "Tela-circle";
-        package = pkgs.tela-circle-icon-theme;
+        name = "Fluent-dark";
+        # package = pkgs.tela-circle-icon-theme;
       };
     };
 

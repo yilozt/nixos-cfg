@@ -10,11 +10,9 @@
     gwenview
     oxygen
     khelpcenter
-    konsole
     print-manager
   ];
 
   environment.systemPackages = with pkgs; [
-    latte-dock
   ];
 }
